@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='app'>
+<head>
+  <meta charset="UTF-8">
+  <title>Arma3Sync</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/style.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Arma3Sync</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active">
+            <a href="/">Home</a>
+          </li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="panel panel-default" ng-controller="Arma3SyncCtrl">
+          <div class="panel-heading">
+            <h3 class="panel-title">Arma3Sync</h3>
+          </div>
+          <div class="panel-body">
+            <p>After downloading or updating a mod, please make sure to rebuild the data.</p>
+            <button type="button" class="btn btn-primary" ng-click="build()">
+              <span class="glyphicon glyphicon-refresh"></span>
+              Build
+            </button>
+          </div>
+        </div>
+
+        <div class="panel panel-default" ng-controller="PlayWithSixCtrl">
+          <div class="panel-heading">
+            <h3 class="panel-title">PlayWithSix</h3>
+          </div>
+          <div class="panel-body">
+            <form>
+              <div class="form-group">
+                <label for="formModName">Mod</label>
+                <input type="text" class="form-control" ng-model="name" id="formModName" placeholder="Name">
+              </div>
+              <button type="submit" class="btn btn-primary" ng-click="download()" value="Download">
+                <span class="glyphicon glyphicon-save"></span>
+                Download
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="panel panel-default" ng-controller="ModsCtrl">
+          <div class="panel-heading">
+            <h3 class="panel-title">Mods</h3>
+          </div>
+          <table class="table table-striped">
+            <tr ng-repeat="mod in mods">
+              <td>
+                <span>{{mod.name}}</span>
+                <a ng-click="delete(mod)" class="btn btn-danger btn-xs pull-right">
+                  <span class="glyphicon glyphicon-trash"></span>
+                  Delete
+                </a>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
