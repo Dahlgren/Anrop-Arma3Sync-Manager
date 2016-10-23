@@ -71,11 +71,18 @@
           <table class="table table-striped">
             <tr ng-repeat="mod in mods">
               <td>
-                <span>{{mod.name}}</span>
-                <a ng-click="delete(mod)" class="btn btn-danger btn-xs pull-right">
-                  <span class="glyphicon glyphicon-trash"></span>
-                  Delete
-                </a>
+                <div>
+                  <span>{{mod.name}}</span>
+                  <a ng-click="delete(mod)" class="btn btn-danger btn-xs pull-right">
+                    <span class="glyphicon glyphicon-trash"></span>
+                    Delete
+                  </a>
+                </div>
+                <div class="progress" style="margin: 10px 0 0 0; width: 100%" ng-if="mod.progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="mod.progress" aria-valuemin="0" aria-valuemax="100" style="width: {{mod.progress}}%; min-width: 2em;">
+                    {{mod.progress}} %
+                  </div>
+                </div>
               </td>
             </tr>
           </table>
