@@ -69,7 +69,7 @@
             <h3 class="panel-title">Mods</h3>
           </div>
           <table class="table table-striped">
-            <tr ng-repeat="mod in mods">
+            <tr ng-repeat="mod in mods | orderBy: 'name' track by mod.name">
               <td>
                 <div>
                   <span>{{mod.name}}</span>
