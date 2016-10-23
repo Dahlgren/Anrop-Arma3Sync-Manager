@@ -63,7 +63,7 @@
         </div>
       </div>
 
-      <div class="col-md-8">
+      <div class="col-md-8 mods">
         <div class="panel panel-default" ng-controller="ModsCtrl">
           <div class="panel-heading">
             <h3 class="panel-title">Mods</h3>
@@ -78,7 +78,7 @@
                     Delete
                   </a>
                 </div>
-                <div class="progress" style="margin: 10px 0 0 0; width: 100%" ng-if="mod.progress">
+                <div class="progress" ng-if="mod.progress">
                   <div class="progress-bar" role="progressbar" aria-valuenow="mod.progress" aria-valuemin="0" aria-valuemax="100" style="width: {{mod.progress}}%; min-width: 2em;">
                     {{mod.progress}} %
                   </div>
