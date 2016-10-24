@@ -73,10 +73,16 @@
               <td>
                 <div>
                   <span>{{mod.name}}</span>
-                  <a ng-click="delete(mod)" class="btn btn-danger btn-xs pull-right">
-                    <span class="glyphicon glyphicon-trash"></span>
-                    Delete
-                  </a>
+                  <div class="btn-group pull-right" role="group">
+                    <a ng-click="update(mod)" class="btn btn-primary btn-xs" ng-if="mod.outdated && !mod.progress">
+                      <span class="glyphicon glyphicon-save"></span>
+                      Update
+                    </a>
+                    <a ng-click="delete(mod)" class="btn btn-danger btn-xs" ng-if="!mod.progress">
+                      <span class="glyphicon glyphicon-trash"></span>
+                      Delete
+                    </a>
+                  </div>
                 </div>
                 <div class="progress" ng-if="mod.progress">
                   <div class="progress-bar" role="progressbar" aria-valuenow="mod.progress" aria-valuemin="0" aria-valuemax="100" style="width: {{mod.progress}}%; min-width: 2em;">
