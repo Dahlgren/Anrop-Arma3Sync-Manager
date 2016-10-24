@@ -6,15 +6,11 @@ module.exports = function (mods) {
   router.post('/', function (req, res) {
     mods.download(req.body.name, function (err, mods) {
       if (err) {
-        res.json({
-          error: err,
-        });
-      } else {
-        res.json({
-          mods: mods,
-        });
+        console.error("Failed to download " + req.body.name + ". " + err);
       }
     });
+
+    res.sendStatus(204);
   });
 
   router.post('/search', function (req, res) {
