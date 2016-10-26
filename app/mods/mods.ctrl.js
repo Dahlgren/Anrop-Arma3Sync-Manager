@@ -1,5 +1,5 @@
 angular.module('app')
-.controller('ModsCtrl', function ($scope, ModsSvc, PlayWithSixSvc) {
+.controller('ModsCtrl', function ($scope, SweetAlert, ModsSvc, PlayWithSixSvc) {
   var setDisabledState = function (disabled) {
     $scope.deleteButtonDisabled = disabled;
     $scope.downloadButtonDisabled = disabled;
@@ -16,8 +16,31 @@ angular.module('app')
   });
 
   $scope.delete = function (mod) {
-    ModsSvc.delete(mod.name).then(function () {
-    });
+    SweetAlert.swal(
+      {
+       title: "Are you sure?",
+       text: "You will delete <strong>" + mod.name + "</strong> from the server",
+       type: "warning",
+       confirmButtonColor: "#DD6B55",
+       confirmButtonText: "Yes, delete it!",
+       html: true,
+       showCancelButton: true,
+       closeOnConfirm: false,
+       showLoaderOnConfirm: true,
+     },
+     function(isConfirm){
+       if (isConfirm) {
+         ModsSvc.delete(mod.name).then(function () {
+           SweetAlert.swal({
+             title: "Deleted!",
+             text: "<strong>" + mod.name + "</strong> has been deleted",
+             type: "success",
+             html: true,
+           });
+         });
+       }
+     }
+    );
   };
 
   $scope.refresh = function () {
