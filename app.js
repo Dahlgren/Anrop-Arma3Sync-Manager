@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 var state = new State();
 var arma3sync = new Arma3Sync(config, state);
-var mods = new Mods(config, state);
+var mods = new Mods(config, state, arma3sync);
 
 app.use('/api', require('./api')(arma3sync, mods));
 
