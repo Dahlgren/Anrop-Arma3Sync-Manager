@@ -8,6 +8,10 @@ module.exports = function (mods) {
   });
 
   router.delete('/:id', function (req, res) {
+    if (!req.params.id) {
+      return res.sendStatus(400);
+    }
+
     mods.delete(req.params.id, function (err) {
       if (err) {
         res.status(500).json(err);
