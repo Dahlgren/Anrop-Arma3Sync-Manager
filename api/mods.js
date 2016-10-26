@@ -7,6 +7,12 @@ module.exports = function (mods) {
     res.json(mods.mods);
   });
 
+  router.post('/', function (req, res) {
+    mods.updateMods(function () {
+      res.json(mods.mods);
+    });
+  });
+
   router.delete('/:id', function (req, res) {
     if (!req.params.id) {
       return res.sendStatus(400);

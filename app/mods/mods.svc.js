@@ -7,5 +7,8 @@ angular.module('app')
     mods: function () {
       return $http.get('api/mods');
     },
+    refresh: function () {
+      return $http.post('api/mods');
+    }
   };
 });

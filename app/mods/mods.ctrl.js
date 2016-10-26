@@ -9,6 +9,11 @@ angular.module('app')
     });
   };
 
+  $scope.refresh = function () {
+    ModsSvc.refresh().then(function () {
+    });
+  };
+
   $scope.update = function (mod) {
     PlayWithSixSvc.download(mod.name).then(function () {
     });
