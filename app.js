@@ -6,6 +6,7 @@ var path = require('path');
 var socketio = require('socket.io');
 
 var config = require('./config');
+var State = require('./lib/state');
 var Arma3Sync = require('./lib/arma3sync');
 var Mods = require('./lib/mods');
 
@@ -19,8 +20,9 @@ app.use(logger('dev'));
 app.use(require('connect-livereload')());
 app.use(express.static(path.join(__dirname, 'public')));
 
-var arma3sync = new Arma3Sync(config);
-var mods = new Mods(config);
+var state = new State();
+var arma3sync = new Arma3Sync(config, state);
+var mods = new Mods(config, state);
 
 app.use('/api', require('./api')(arma3sync, mods));
 
@@ -30,10 +32,15 @@ app.get('/*', function(req, res) {
 
 io.on('connection', function (socket) {
   socket.emit('mods', mods.mods);
+  socket.emit('state', state.state);
 });
 
 mods.on('mods', function(mods) {
   io.emit('mods', mods);
+});
+
+state.on('state', function(state) {
+  io.emit('state', state);
 });
 
 server.listen(config.port);

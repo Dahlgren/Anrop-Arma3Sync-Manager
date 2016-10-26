@@ -39,7 +39,7 @@
           </div>
           <div class="panel-body">
             <p>After downloading or updating a mod, please make sure to rebuild the data.</p>
-            <button type="button" class="btn btn-primary" ng-click="build()">
+            <button type="button" class="btn btn-primary" ng-disabled="buildButtonDisabled" ng-click="build()">
               <span class="glyphicon glyphicon-refresh"></span>
               Build
             </button>
@@ -68,7 +68,7 @@
                     <div>
                       <span>{{mod.name}}</span>
                       <div class="btn-group pull-right" role="group">
-                        <a ng-click="download(mod)" class="btn btn-primary btn-xs" ng-if="!mod.progress">
+                        <a ng-click="download(mod)" class="btn btn-primary btn-xs" ng-disabled="downloadButtonDisabled" ng-if="!mod.progress">
                           <span class="glyphicon glyphicon-save"></span>
                           Download
                         </a>
@@ -90,7 +90,7 @@
       <div class="col-md-8 mods">
         <div class="panel panel-default" ng-controller="ModsCtrl">
           <div class="panel-heading">
-            <button class="btn btn-xs btn-primary btn-refresh pull-right" ng-click="refresh()" value="Refresh">
+            <button class="btn btn-xs btn-primary btn-refresh pull-right" ng-disabled="refreshButtonDisabled" ng-click="refresh()" value="Refresh">
               <span class="glyphicon glyphicon-refresh"></span>
               Refresh
             </button>
@@ -102,11 +102,11 @@
                 <div>
                   <span>{{mod.name}}</span>
                   <div class="btn-group pull-right" role="group">
-                    <a ng-click="update(mod)" class="btn btn-primary btn-xs" ng-if="mod.outdated && !mod.progress">
+                    <a ng-click="update(mod)" class="btn btn-primary btn-xs" ng-disabled="downloadButtonDisabled" ng-if="mod.outdated && !mod.progress">
                       <span class="glyphicon glyphicon-save"></span>
                       Update
                     </a>
-                    <a ng-click="delete(mod)" class="btn btn-danger btn-xs" ng-if="!mod.progress">
+                    <a ng-click="delete(mod)" class="btn btn-danger btn-xs" ng-disabled="deleteButtonDisabled" ng-if="!mod.progress">
                       <span class="glyphicon glyphicon-trash"></span>
                       Delete
                     </a>
