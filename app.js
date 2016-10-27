@@ -43,4 +43,4 @@ state.on('state', function(state) {
   io.emit('state', state);
 });
 
-server.listen(config.port);
+server.listen(config.port, config.host);
