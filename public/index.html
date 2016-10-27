@@ -48,7 +48,7 @@
                 <label for="formModName">Mod</label>
                 <input type="text" class="form-control" ng-model="name" id="formModName" placeholder="Name">
               </div>
-              <button type="submit" class="btn btn-primary" ng-click="search()" value="Search">
+              <button type="submit" class="btn btn-primary" ng-click="search()" ng-disabled="searchButtonDisabled" value="Search">
                 <span class="glyphicon glyphicon-search"></span>
                 Search
               </button>

@@ -14,9 +14,13 @@ angular.module('app')
     });
   };
 
+  $scope.searchButtonDisabled = false;
   $scope.search = function () {
+    $scope.searchButtonDisabled = true;
     PlayWithSixSvc.search($scope.name).success(function (data) {
       $scope.results = data.mods;
+    }).finally(function() {
+      $scope.searchButtonDisabled = false;
     });
   };
 });
