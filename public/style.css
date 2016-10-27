@@ -2,6 +2,22 @@ body {
   padding-top: 70px;
 }
 
+.glyphicon-refresh-animate {
+    -animation: refresh-animate-keyframes .7s infinite linear;
+    -moz-animation: webkit-refresh-animate-keyframes .7s infinite linear;
+    -webkit-animation: webkit-refresh-animate-keyframes .7s infinite linear;
+}
+
+@-webkit-keyframes webkit-refresh-animate-keyframes {
+  from { -webkit-transform: rotate(0deg);}
+  to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes refresh-animate-keyframes {
+  from { transform: scale(1) rotate(0deg);}
+  to { transform: scale(1) rotate(360deg);}
+}
+
 .mods .btn-refresh {
   margin-right: -7px;
 }

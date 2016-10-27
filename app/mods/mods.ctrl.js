@@ -6,12 +6,14 @@ angular.module('app')
     $scope.refreshButtonDisabled = disabled;
   }
   setDisabledState(true);
+  $scope.refreshButtonAnimated = false;
 
   $scope.$on('socket:mods', function (ev, data) {
     $scope.mods = data;
   });
 
   $scope.$on('socket:state', function (ev, state) {
+    $scope.refreshButtonAnimated = state.refreshing;
     setDisabledState(state.building || state.downloading || state.refreshing);
   });
 

@@ -31,7 +31,7 @@
               Repository will be automatically rebuilt after installing or updating a mod.
             </p>
             <button type="button" class="btn btn-primary" ng-disabled="buildButtonDisabled" ng-click="build()">
-              <span class="glyphicon glyphicon-refresh"></span>
+              <span class="glyphicon glyphicon-refresh" ng-class="{'glyphicon-refresh-animate': buildButtonAnimated}"></span>
               Build
             </button>
           </div>
@@ -49,7 +49,7 @@
                 <input type="text" class="form-control" ng-model="name" id="formModName" placeholder="Name">
               </div>
               <button type="submit" class="btn btn-primary" ng-click="search()" ng-disabled="searchButtonDisabled" value="Search">
-                <span class="glyphicon glyphicon-search"></span>
+                <span class="glyphicon" ng-class="{'glyphicon-refresh glyphicon-refresh-animate': searchButtonAnimated, 'glyphicon-search': !searchButtonAnimated}"></span>
                 Search
               </button>
             </form>
@@ -89,7 +89,7 @@
         <div class="panel panel-default" ng-controller="ModsCtrl">
           <div class="panel-heading">
             <button class="btn btn-xs btn-primary btn-refresh pull-right" ng-disabled="refreshButtonDisabled" ng-click="refresh()" value="Refresh">
-              <span class="glyphicon glyphicon-refresh"></span>
+              <span class="glyphicon glyphicon-refresh" ng-class="{'glyphicon-refresh-animate': refreshButtonAnimated}"></span>
               Refresh
             </button>
             <h3 class="panel-title">Mods</h3>

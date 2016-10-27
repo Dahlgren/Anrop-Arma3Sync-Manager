@@ -4,8 +4,10 @@ angular.module('app')
     $scope.buildButtonDisabled = disabled;
   }
   setDisabledState(true);
+  $scope.buildButtonAnimated = false;
 
   $scope.$on('socket:state', function (ev, state) {
+    $scope.buildButtonAnimated = state.building;
     setDisabledState(state.building || state.downloading || state.refreshing);
   });
 

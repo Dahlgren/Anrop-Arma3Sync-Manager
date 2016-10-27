@@ -14,16 +14,19 @@ angular.module('app')
     });
   };
 
+  $scope.searchButtonAnimated = false;
   $scope.searchButtonDisabled = false;
   $scope.results = [];
-  
+
   $scope.search = function () {
+    $scope.searchButtonAnimated = true;
     $scope.searchButtonDisabled = true;
     $scope.results = [];
 
     PlayWithSixSvc.search($scope.name).success(function (data) {
       $scope.results = data.mods;
     }).finally(function() {
+      $scope.searchButtonAnimated = false;
       $scope.searchButtonDisabled = false;
     });
   };
