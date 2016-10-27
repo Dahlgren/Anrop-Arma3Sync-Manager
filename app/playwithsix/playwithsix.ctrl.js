@@ -15,8 +15,12 @@ angular.module('app')
   };
 
   $scope.searchButtonDisabled = false;
+  $scope.results = [];
+  
   $scope.search = function () {
     $scope.searchButtonDisabled = true;
+    $scope.results = [];
+
     PlayWithSixSvc.search($scope.name).success(function (data) {
       $scope.results = data.mods;
     }).finally(function() {
