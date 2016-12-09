@@ -98,8 +98,8 @@
             <tr ng-repeat="mod in mods | orderBy: 'name' track by mod.name">
               <td>
                 <div>
-                  <span>{{mod.name}}</span>
-                  <img src="images/playwithsix.png" height="20px" width="20px" title="Updates from Play withSIX" ng-if="mod.playWithSix">
+                  <strong>{{mod.name}}</strong>
+                  <span>{{mod.formattedSize}}</span>
                   <div class="btn-group pull-right" role="group">
                     <a ng-click="update(mod)" class="btn btn-primary btn-xs" ng-disabled="downloadButtonDisabled" ng-if="mod.outdated && mod.progress == null">
                       <span class="glyphicon glyphicon-save"></span>
@@ -110,6 +110,9 @@
                       Delete
                     </a>
                   </div>
+                </div>
+                <div>
+                  <span ng-if="mod.title != null">{{mod.title}}</span>
                 </div>
                 <div class="progress" ng-if="mod.progress != null">
                   <div class="progress-bar" role="progressbar" aria-valuenow="mod.progress" aria-valuemin="0" aria-valuemax="100" style="width: {{mod.progress}}%; min-width: 2em;">
