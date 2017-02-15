@@ -111,8 +111,10 @@
                     </a>
                   </div>
                 </div>
-                <div>
-                  <span ng-if="mod.title != null">{{mod.title}}</span>
+                <div ng-if="mod.playWithSix != null">
+                  <span>{{mod.playWithSix.title}}</span>
+                  <span>{{mod.playWithSix.version}}</span>
+                  <span>{{mod.playWithSix.type}}</span>
                 </div>
                 <div class="progress" ng-if="mod.progress != null">
                   <div class="progress-bar" role="progressbar" aria-valuenow="mod.progress" aria-valuemin="0" aria-valuemax="100" style="width: {{mod.progress}}%; min-width: 2em;">
