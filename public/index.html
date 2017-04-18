@@ -61,12 +61,16 @@
                 <div>
                   <p>
                     <strong>{{ mod.name }}</strong>
-                  </p>
-                  <p>
-                    <small>{{ mod.type }}</small>
                     <small>{{ mod.formattedSize }}</small>
                   </p>
                   <p>{{ mod.title }}</p>
+                  <p>
+                    <span class="label label-success">{{mod.latestVersion}}</span>
+                    <span class="label label-warning">{{mod.type}}</span>
+                    <span class="tags" ng-if="mod.tags" ng-repeat="tag in mod.tags">
+                      <span class="label label-default">{{tag}}</span>
+                    </span>
+                  </p>
                 </div>
                 <div class="btn-group" role="group" ng-if="mod.progress == null">
                   <a ng-click="download(mod)" class="btn btn-primary btn-xs" ng-disabled="downloadButtonDisabled" ng-if="mod.progress == null">
@@ -97,24 +101,30 @@
           <table class="table table-striped">
             <tr ng-repeat="mod in mods | orderBy: 'name' track by mod.name">
               <td>
+                <div class="btn-group pull-right" role="group">
+                  <a ng-click="update(mod)" class="btn btn-primary btn-xs" ng-disabled="downloadButtonDisabled" ng-if="mod.outdated && mod.progress == null">
+                    <span class="glyphicon glyphicon-save"></span>
+                    Update
+                  </a>
+                  <a ng-click="delete(mod)" class="btn btn-danger btn-xs" ng-disabled="deleteButtonDisabled" ng-if="mod.progress == null">
+                    <span class="glyphicon glyphicon-trash"></span>
+                    Delete
+                  </a>
+                </div>
+
                 <div>
                   <strong>{{mod.name}}</strong>
-                  <span>{{mod.formattedSize}}</span>
-                  <div class="btn-group pull-right" role="group">
-                    <a ng-click="update(mod)" class="btn btn-primary btn-xs" ng-disabled="downloadButtonDisabled" ng-if="mod.outdated && mod.progress == null">
-                      <span class="glyphicon glyphicon-save"></span>
-                      Update
-                    </a>
-                    <a ng-click="delete(mod)" class="btn btn-danger btn-xs" ng-disabled="deleteButtonDisabled" ng-if="mod.progress == null">
-                      <span class="glyphicon glyphicon-trash"></span>
-                      Delete
-                    </a>
-                  </div>
+                  <small>{{mod.formattedSize}}</small>
                 </div>
-                <div ng-if="mod.playWithSix != null">
+                <div ng-if="mod.playWithSix">
                   <span>{{mod.playWithSix.title}}</span>
-                  <span>{{mod.playWithSix.version}}</span>
-                  <span>{{mod.playWithSix.type}}</span>
+                </div>
+                <div ng-if="mod.playWithSix">
+                  <span class="label label-success">{{mod.playWithSix.version}}</span>
+                  <span class="label label-warning">{{mod.playWithSix.type}}</span>
+                  <span class="tags" ng-if="mod.playWithSix.tags" ng-repeat="tag in mod.playWithSix.tags">
+                    <span class="label label-default">{{tag}}</span>
+                  </span>
                 </div>
                 <div class="progress" ng-if="mod.progress != null">
                   <div class="progress-bar" role="progressbar" aria-valuenow="mod.progress" aria-valuemin="0" aria-valuemax="100" style="width: {{mod.progress}}%; min-width: 2em;">
