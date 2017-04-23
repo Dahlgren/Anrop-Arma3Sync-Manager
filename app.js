@@ -1,5 +1,6 @@
 var bodyParser = require('body-parser');
 var express = require('express');
+var favicon = require('serve-favicon');
 var http = require('http');
 var logger = require('morgan');
 var path = require('path');
@@ -18,6 +19,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(logger('dev'));
 app.use(require('connect-livereload')());
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 var state = new State();
