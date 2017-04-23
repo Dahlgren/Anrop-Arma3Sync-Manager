@@ -30,7 +30,7 @@
               If there are issues with the repository, try doing a manual rebuild.
               Repository will be automatically rebuilt after installing or updating a mod.
             </p>
-            <button type="button" class="btn btn-primary" ng-disabled="buildButtonDisabled" ng-click="build()">
+            <button type="button" class="btn btn-primary" ng-disabled="buildButtonDisabled" ng-click="!buildButtonDisabled && build()">
               <span class="glyphicon glyphicon-refresh" ng-class="{'glyphicon-refresh-animate': buildButtonAnimated}"></span>
               Build
             </button>
@@ -48,7 +48,7 @@
                 <label for="formModName">Mod</label>
                 <input type="text" class="form-control" ng-model="name" id="formModName" placeholder="Name">
               </div>
-              <button type="submit" class="btn btn-primary" ng-click="search()" ng-disabled="searchButtonDisabled" value="Search">
+              <button type="submit" class="btn btn-primary" ng-click="!searchButtonDisabled && search()" ng-disabled="searchButtonDisabled" value="Search">
                 <span class="glyphicon" ng-class="{'glyphicon-refresh glyphicon-refresh-animate': searchButtonAnimated, 'glyphicon-search': !searchButtonAnimated}"></span>
                 Search
               </button>
@@ -73,7 +73,7 @@
                   </p>
                 </div>
                 <div class="btn-group" role="group" ng-if="mod.progress == null">
-                  <a ng-click="download(mod)" class="btn btn-primary btn-xs" ng-disabled="downloadButtonDisabled" ng-if="mod.progress == null">
+                  <a ng-click="!downloadButtonDisabled && download(mod)" class="btn btn-primary btn-xs" ng-disabled="downloadButtonDisabled" ng-if="mod.progress == null">
                     <span class="glyphicon glyphicon-save"></span>
                     Download
                   </a>
@@ -92,7 +92,7 @@
       <div class="col-md-8 mods">
         <div class="panel panel-default" ng-controller="ModsCtrl">
           <div class="panel-heading">
-            <button class="btn btn-xs btn-primary btn-refresh pull-right" ng-disabled="refreshButtonDisabled" ng-click="refresh()" value="Refresh">
+            <button class="btn btn-xs btn-primary btn-refresh pull-right" ng-disabled="refreshButtonDisabled" ng-click="!refreshButtonDisabled && refresh()" value="Refresh">
               <span class="glyphicon glyphicon-refresh" ng-class="{'glyphicon-refresh-animate': refreshButtonAnimated}"></span>
               Refresh
             </button>
@@ -102,11 +102,11 @@
             <tr ng-repeat="mod in mods | orderBy: 'name' track by mod.name">
               <td>
                 <div class="btn-group pull-right" role="group">
-                  <a ng-click="update(mod)" class="btn btn-primary btn-xs" ng-disabled="downloadButtonDisabled" ng-if="mod.outdated && mod.progress == null">
+                  <a ng-click="!downloadButtonDisabled && update(mod)" class="btn btn-primary btn-xs" ng-disabled="downloadButtonDisabled" ng-if="mod.outdated && mod.progress == null">
                     <span class="glyphicon glyphicon-save"></span>
                     Update
                   </a>
-                  <a ng-click="delete(mod)" class="btn btn-danger btn-xs" ng-disabled="deleteButtonDisabled" ng-if="mod.progress == null">
+                  <a ng-click="!deleteButtonDisabled && delete(mod)" class="btn btn-danger btn-xs" ng-disabled="deleteButtonDisabled" ng-if="mod.progress == null">
                     <span class="glyphicon glyphicon-trash"></span>
                     Delete
                   </a>
