@@ -61,7 +61,9 @@
               <td>
                 <div>
                   <p>
-                    <strong>{{ mod.name }}</strong>
+                    <strong>
+                      <a ng-href="https://playwithsix.anrop.se/redirect?name={{ mod.name }}" target=_blank>{{ mod.name }}</a>
+                    </strong>
                     <small>{{ mod.formattedSize }}</small>
                   </p>
                   <p>{{ mod.title }}</p>
@@ -114,7 +116,10 @@
                 </div>
 
                 <div>
-                  <strong>{{mod.name}}</strong>
+                  <strong>
+                    <a ng-if="mod.playWithSix" ng-href="https://playwithsix.anrop.se/redirect?name={{ mod.name }}" target=_blank>{{ mod.name }}</a>
+                    <span ng-if="!mod.playWithSix">{{mod.name}}</span>
+                  </strong>
                   <small>{{mod.formattedSize}}</small>
                 </div>
                 <div ng-if="mod.playWithSix">
