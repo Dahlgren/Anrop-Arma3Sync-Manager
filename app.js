@@ -1,3 +1,7 @@
+if (process.env.NEW_RELIC_LICENSE_KEY && process.env.NEW_RELIC_APP_NAME) {
+  require('newrelic');
+}
+
 var bodyParser = require('body-parser');
 var express = require('express');
 var favicon = require('serve-favicon');
