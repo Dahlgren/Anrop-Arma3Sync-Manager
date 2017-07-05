@@ -131,6 +131,12 @@
                   <span class="tags" ng-if="mod.playWithSix.tags" ng-repeat="tag in mod.playWithSix.tags">
                     <span class="label label-default">{{tag}}</span>
                   </span>
+                  <span class="label" ng-class="{'label-danger': !hasAllRequired(mod), 'label-info': hasAllRequired(mod)}" ng-if="mod.playWithSix.requires.length > 0" ng-click="showModsPopup(mod.name, 'Requires:', mod.playWithSix.requires)">
+                    Requires: {{ mod.playWithSix.requires.length }}
+                  </span>
+                  <span class="label label-info" ng-if="mod.playWithSix.requiredBy.length > 0" ng-click="showModsPopup(mod.name, 'Required By:', mod.playWithSix.requiredBy)">
+                    Required By: {{ mod.playWithSix.requiredBy.length }}
+                  </span>
                 </div>
                 <div class="progress" ng-if="mod.progress != null">
                   <div class="progress-bar" role="progressbar" aria-valuenow="mod.progress" aria-valuemin="0" aria-valuemax="100" style="width: {{mod.progress}}%; min-width: 2em;">
