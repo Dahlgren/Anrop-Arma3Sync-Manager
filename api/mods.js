@@ -1,9 +1,10 @@
 var express = require('express')
+var cors = require('cors')
 
 module.exports = function (mods) {
   var router = express.Router()
 
-  router.get('/', function (req, res) {
+  router.get('/', cors(), function (req, res) {
     res.json(mods.mods)
   })
 
