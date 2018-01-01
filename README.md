@@ -38,3 +38,4 @@ Values that can be defined in your `config.js`
 | path | Yes | Path to the Arma3Sync repository folder containing your mods |
 | port | Yes | Port that HTTP Server is bound to |
 | repository | Yes | Repository to rebuild on mod changes or manually |
+| skipDependencies | No | Skip downloading of dependencies when downloading a mod |

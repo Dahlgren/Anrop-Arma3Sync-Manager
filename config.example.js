@@ -6,5 +6,6 @@ module.exports = {
   port: 3000,
   host: '0.0.0.0', // Can be either an IP or a Hostname
   repository: 'repository_name',
-  liteMods: false
+  liteMods: false,
+  skipDependencies: true
 }
