@@ -37,59 +37,6 @@
             </button>
           </div>
         </div>
-
-        <div class="panel panel-default" ng-controller="PlayWithSixCtrl">
-          <div class="panel-heading">
-            <h3 class="panel-title">Download Mod</h3>
-          </div>
-
-          <div class="panel-body">
-            <form>
-              <div class="form-group">
-                <label for="formModName">Mod</label>
-                <input type="text" class="form-control" ng-model="name" id="formModName" placeholder="Name">
-              </div>
-              <button type="submit" class="btn btn-primary" ng-click="!searchButtonDisabled && search()" ng-disabled="searchButtonDisabled" value="Search">
-                <span class="glyphicon" ng-class="{'glyphicon-refresh glyphicon-refresh-animate': searchButtonAnimated, 'glyphicon-search': !searchButtonAnimated}"></span>
-                Search
-              </button>
-            </form>
-          </div>
-
-          <table class="table table-striped" ng-if="results">
-            <tr ng-repeat="mod in results | orderBy: 'name' track by mod.name">
-              <td>
-                <div>
-                  <p>
-                    <strong>
-                      <a ng-href="https://playwithsix.anrop.se/redirect?name={{ mod.name }}" target=_blank>{{ mod.name }}</a>
-                    </strong>
-                    <small>{{ mod.formattedSize }}</small>
-                  </p>
-                  <p>{{ mod.title }}</p>
-                  <p>
-                    <span class="label label-success">{{mod.latestVersion}}</span>
-                    <span class="label label-warning">{{mod.type}}</span>
-                    <span class="tags" ng-if="mod.tags" ng-repeat="tag in mod.tags">
-                      <span class="label label-default">{{tag}}</span>
-                    </span>
-                  </p>
-                </div>
-                <div class="btn-group" role="group" ng-if="mod.progress == null">
-                  <a ng-click="!downloadButtonDisabled && download(mod)" class="btn btn-primary btn-xs" ng-disabled="downloadButtonDisabled" ng-if="mod.progress == null">
-                    <span class="glyphicon glyphicon-save"></span>
-                    Download
-                  </a>
-                </div>
-                <div class="progress" ng-if="mod.progress != null">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="mod.progress" aria-valuemin="0" aria-valuemax="100" style="width: {{mod.progress}}%; min-width: 2em;">
-                    {{mod.progress}} %
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </table>
-        </div>
       </div>
 
       <div class="col-md-8 mods">
@@ -105,10 +52,6 @@
             <tr ng-repeat="mod in mods | orderBy: 'name' track by mod.name">
               <td>
                 <div class="btn-group pull-right" role="group">
-                  <a ng-click="!downloadButtonDisabled && update(mod)" class="btn btn-primary btn-xs" ng-disabled="downloadButtonDisabled" ng-if="mod.outdated && mod.progress == null">
-                    <span class="glyphicon glyphicon-save"></span>
-                    Update
-                  </a>
                   <a ng-click="!deleteButtonDisabled && delete(mod)" class="btn btn-danger btn-xs" ng-disabled="deleteButtonDisabled" ng-if="mod.progress == null">
                     <span class="glyphicon glyphicon-trash"></span>
                     Delete
@@ -117,31 +60,9 @@
 
                 <div>
                   <strong>
-                    <a ng-if="mod.playWithSix" ng-href="https://playwithsix.anrop.se/redirect?name={{ mod.name }}" target=_blank>{{ mod.name }}</a>
-                    <span ng-if="!mod.playWithSix">{{mod.name}}</span>
+                    <span>{{mod.name}}</span>
                   </strong>
                   <small>{{mod.formattedSize}}</small>
-                </div>
-                <div ng-if="mod.playWithSix">
-                  <span>{{mod.playWithSix.title}}</span>
-                </div>
-                <div ng-if="mod.playWithSix">
-                  <span class="label label-success">{{mod.playWithSix.version}}</span>
-                  <span class="label label-warning">{{mod.playWithSix.type}}</span>
-                  <span class="tags" ng-if="mod.playWithSix.tags" ng-repeat="tag in mod.playWithSix.tags">
-                    <span class="label label-default">{{tag}}</span>
-                  </span>
-                  <span class="label" ng-class="{'label-danger': !hasAllRequired(mod), 'label-info': hasAllRequired(mod)}" ng-if="mod.playWithSix.requires.length > 0" ng-click="showModsPopup(mod.name, 'Requires:', mod.playWithSix.requires)">
-                    Requires: {{ mod.playWithSix.requires.length }}
-                  </span>
-                  <span class="label label-info" ng-if="mod.playWithSix.requiredBy.length > 0" ng-click="showModsPopup(mod.name, 'Required By:', mod.playWithSix.requiredBy)">
-                    Required By: {{ mod.playWithSix.requiredBy.length }}
-                  </span>
-                </div>
-                <div class="progress" ng-if="mod.progress != null">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="mod.progress" aria-valuemin="0" aria-valuemax="100" style="width: {{mod.progress}}%; min-width: 2em;">
-                    {{mod.progress}} %
-                  </div>
                 </div>
               </td>
             </tr>
