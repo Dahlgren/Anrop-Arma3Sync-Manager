@@ -17,7 +17,7 @@ gulp.task('js', function () {
 })
 
 gulp.task('default', ['watch'], function () {
-    // Start the server at the beginning of the task
+  // Start the server at the beginning of the task
   server.run(['app.js'])
 })
 
