@@ -34,8 +34,6 @@ Values that can be defined in your `config.js`
 | arma3syncJarFile | Yes | Path to the Arma3Sync jar file |
 | java | Yes | Path to your Java binary, if found in path this could just be `java` |
 | host | Yes | Restrict to specific network interface or just leave it as `'0.0.0.0'` |
-| liteMods | No | Try to download lite versions of mods instead. Mostly used by servers |
 | path | Yes | Path to the Arma3Sync repository folder containing your mods |
 | port | Yes | Port that HTTP Server is bound to |
 | repository | Yes | Repository to rebuild on mod changes or manually |
-| skipDependencies | No | Skip downloading of dependencies when downloading a mod |
