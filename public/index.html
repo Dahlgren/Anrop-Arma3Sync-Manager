@@ -64,6 +64,15 @@
                   </strong>
                   <small>{{mod.formattedSize}}</small>
                 </div>
+
+                <div ng-if="mod.steamWorkshop">
+                  <a ng-if="mod.steamWorkshop.id" href="https://steamcommunity.com/sharedfiles/filedetails/?id={{mod.steamWorkshop.id}}" target=_blank>
+                    {{mod.steamWorkshop.id}}
+                  </a>
+                  <strong ng-if="mod.steamWorkshop.name">
+                    <span>{{mod.steamWorkshop.name}}</span>
+                  </strong>
+                </div>
               </td>
             </tr>
           </table>
