@@ -16,12 +16,10 @@ jobs:
     strategy:
       matrix:
         node-version:
+          - 16.x
           - 14.x
           - 12.x
           - 10.x
-          - 8.x
-          - 6.x
-          - 4.x
         os:
           - ubuntu-20.04
           - windows-2019

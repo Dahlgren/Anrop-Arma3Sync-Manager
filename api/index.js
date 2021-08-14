@@ -1,7 +1,7 @@
-var express = require('express')
+const express = require('express')
 
-module.exports = function (arma3sync, mods) {
-  var router = express.Router()
+module.exports = (arma3sync, mods) => {
+  const router = express.Router()
 
   router.use('/arma3sync', require('./arma3sync')(arma3sync))
   router.use('/mods', require('./mods')(mods))

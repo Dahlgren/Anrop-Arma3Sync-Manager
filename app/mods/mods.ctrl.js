@@ -1,12 +1,12 @@
 angular.module('app')
-  .controller('ModsCtrl', function ($scope, SweetAlert, ModsSvc) {
-    var setDisabledState = function (disabled) {
+  .controller('ModsCtrl', ($scope, SweetAlert, ModsSvc) => {
+    const setDisabledState = (disabled) => {
       $scope.deleteButtonDisabled = disabled
       $scope.downloadButtonDisabled = disabled
       $scope.refreshButtonDisabled = disabled
     }
 
-    var showConfirmDeleteDialog = function (mod) {
+    const showConfirmDeleteDialog = (mod) => {
       SweetAlert.swal(
         {
           title: 'Are you sure?',
@@ -19,9 +19,9 @@ angular.module('app')
           closeOnConfirm: false,
           showLoaderOnConfirm: true
         },
-        function (isConfirm) {
+        (isConfirm) => {
           if (isConfirm) {
-            ModsSvc.delete(mod.name).then(function () {
+            ModsSvc.delete(mod.name).then(() => {
               showDeletedDialog(mod)
             })
           }
@@ -29,7 +29,7 @@ angular.module('app')
       )
     }
 
-    var showDeletedDialog = function (mod) {
+    const showDeletedDialog = (mod) => {
       SweetAlert.swal({
         title: 'Deleted!',
         text: '<strong>' + mod.name + '</strong> has been deleted',
@@ -41,21 +41,20 @@ angular.module('app')
     setDisabledState(true)
     $scope.refreshButtonAnimated = false
 
-    $scope.$on('socket:mods', function (ev, data) {
+    $scope.$on('socket:mods', (ev, data) => {
       $scope.mods = data
     })
 
-    $scope.$on('socket:state', function (ev, state) {
+    $scope.$on('socket:state', (ev, state) => {
       $scope.refreshButtonAnimated = state.refreshing
       setDisabledState(state.building || state.downloading || state.refreshing)
     })
 
-    $scope.delete = function (mod) {
+    $scope.delete = (mod) => {
       showConfirmDeleteDialog(mod)
     }
 
-    $scope.refresh = function () {
-      ModsSvc.refresh().then(function () {
-      })
+    $scope.refresh = () => {
+      ModsSvc.refresh()
     }
   })

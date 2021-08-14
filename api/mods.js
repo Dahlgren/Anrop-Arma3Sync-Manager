@@ -1,31 +1,32 @@
-var express = require('express')
-var cors = require('cors')
+const express = require('express')
+const cors = require('cors')
 
-module.exports = function (mods) {
-  var router = express.Router()
+module.exports = (mods) => {
+  const router = express.Router()
 
-  router.get('/', cors(), function (req, res) {
+  router.get('/', cors(), (req, res) => {
     res.json(mods.mods)
   })
 
-  router.post('/', function (req, res) {
-    mods.updateMods(function () {
-      res.json(mods.mods)
-    })
+  router.post('/', (req, res) => {
+    mods.updateMods()
+      .then(() => {
+        res.json(mods.mods)
+      })
   })
 
-  router.delete('/:id', function (req, res) {
+  router.delete('/:id', (req, res) => {
     if (!req.params.id) {
       return res.sendStatus(400)
     }
 
-    mods.delete(req.params.id, function (err) {
-      if (err) {
-        res.status(500).json(err)
-      } else {
+    mods.delete(req.params.id)
+      .then(() => {
         res.status(204).json({})
-      }
-    })
+      })
+      .catch((err) => {
+        res.status(500).json(err)
+      })
   })
 
   return router
