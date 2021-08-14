@@ -1,13 +1,13 @@
 angular.module('app')
-  .factory('ModsSvc', function ($http) {
+  .factory('ModsSvc', ($http) => {
     return {
-      delete: function (name) {
+      delete: (name) => {
         return $http.delete('api/mods/' + name)
       },
-      mods: function () {
+      mods: () => {
         return $http.get('api/mods')
       },
-      refresh: function () {
+      refresh: () => {
         return $http.post('api/mods')
       }
     }
