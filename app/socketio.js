@@ -1,9 +1,10 @@
 angular.module('app')
-  .factory('socket', (socketFactory) => {
+  .factory('socket', function (socketFactory) {
     const socket = socketFactory()
     socket.forward('error')
     socket.forward('mods')
     socket.forward('state')
     return socket
   })
-  .run()
+  .run(function (socket) {
+  })

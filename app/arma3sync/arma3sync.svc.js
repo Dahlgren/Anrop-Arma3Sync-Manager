@@ -1,5 +1,5 @@
 angular.module('app')
-  .factory('Arma3SyncSvc', ($http) => {
+  .factory('Arma3SyncSvc', function ($http) {
     return {
       build: () => {
         return $http.post('api/arma3sync/build')
