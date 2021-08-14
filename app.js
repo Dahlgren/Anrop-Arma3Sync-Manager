@@ -11,9 +11,9 @@ const path = require('path')
 const SocketIO = require('socket.io').Server
 
 const config = require('./config')
-const State = require('./lib/state')
-const Arma3Sync = require('./lib/arma3sync')
-const Mods = require('./lib/mods')
+const State = require('./lib/State')
+const Arma3Sync = require('./lib/Arma3Sync')
+const Mods = require('./lib/Mods')
 
 const app = express()
 const server = http.Server(app)
