@@ -1,5 +1,5 @@
 angular.module('app')
-  .factory('ModsSvc', ($http) => {
+  .factory('ModsSvc', function ($http) {
     return {
       delete: (name) => {
         return $http.delete('api/mods/' + name)
