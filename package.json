@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "standard --verbose",
+    "postinstall": "patch-package",
     "start": "./node_modules/.bin/gulp"
   },
   "standard": {
@@ -16,14 +17,17 @@
   },
   "dependencies": {
     "arma-class-parser": "1.1.1",
+    "arma3sync-lib": "1.1.0",
     "body-parser": "1.19.0",
     "connect-livereload": "0.6.1",
     "cors": "2.8.5",
+    "dotenv": "^16.0.1",
     "express": "4.17.1",
     "filesize": "7.0.0",
     "fs-extra": "9.1.0",
     "morgan": "1.10.0",
     "newrelic": "7.5.2",
+    "patch-package": "^6.4.7",
     "serve-favicon": "2.5.0",
     "socket.io": "4.1.3"
   },

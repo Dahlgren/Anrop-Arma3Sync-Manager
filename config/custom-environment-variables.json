@@ -1,0 +1,7 @@
+{
+  "arma3sync-lib": {
+    "publicURL": "ARMA3SYNC_PUBLIC_URL",
+    "repoName": "ARMA3SYNC_REPO_NAME",
+    "repoPath": "ARMA3SYNC_REPO_PATH"
+  }
+}
