@@ -1,0 +1,10 @@
+.dockerignore
+.env
+.env.example
+.git/
+.github/
+.gitignore
+docker-compose.yml
+Dockerfile
+node_modules/
+public/app.js
