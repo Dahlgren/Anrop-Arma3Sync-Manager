@@ -29,5 +29,8 @@ node_modules
 # Config file
 .env
 
+# Hash cache
+hash-cache.json
+
 # Compiled JS
 public/app.js

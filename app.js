@@ -14,6 +14,7 @@ const SocketIO = require('socket.io').Server
 
 const State = require('./lib/State')
 const Arma3Sync = require('./lib/Arma3Sync')
+const FileHashCache = require('./lib/FileHashCache')
 const Mods = require('./lib/Mods')
 
 const app = express()
@@ -28,7 +29,11 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use(express.static(path.join(__dirname, 'public')))
 
 const state = new State()
-const arma3sync = new Arma3Sync(state)
+const fileHashCache = new FileHashCache(
+  process.env.ARMA3SYNC_REPO_PATH,
+  process.env.FILE_HASH_CACHE || 'hash-cache.json'
+)
+const arma3sync = new Arma3Sync(state, fileHashCache)
 const mods = new Mods(state, arma3sync)
 
 app.use('/api', require('./api')(arma3sync, mods))
