@@ -18,7 +18,7 @@ A simple web manager
 
 Install dependences with `npm install`.
 
-Copy the `config.example.js` to `config.js` and change values as desired.
+Copy the `.env.example` to `.env` and change values as desired.
 
 Start the application with `npm start`.
 

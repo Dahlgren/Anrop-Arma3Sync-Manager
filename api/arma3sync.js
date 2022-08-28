@@ -13,5 +13,15 @@ module.exports = (arma3sync) => {
       })
   })
 
+  router.post('/init', (req, res) => {
+    arma3sync.init()
+      .then(() => {
+        res.status(204).json({})
+      })
+      .catch((err) => {
+        res.status(500).json(err)
+      })
+  })
+
   return router
 }

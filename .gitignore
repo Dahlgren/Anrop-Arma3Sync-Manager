@@ -27,7 +27,7 @@ build/Release
 node_modules
 
 # Config file
-config.js
+.env
 
 # Compiled JS
 public/app.js

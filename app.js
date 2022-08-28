@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 if (process.env.NEW_RELIC_LICENSE_KEY && process.env.NEW_RELIC_APP_NAME) {
   require('newrelic')
 }
@@ -10,7 +12,6 @@ const logger = require('morgan')
 const path = require('path')
 const SocketIO = require('socket.io').Server
 
-const config = require('./config')
 const State = require('./lib/State')
 const Arma3Sync = require('./lib/Arma3Sync')
 const Mods = require('./lib/Mods')
@@ -27,8 +28,8 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use(express.static(path.join(__dirname, 'public')))
 
 const state = new State()
-const arma3sync = new Arma3Sync(config, state)
-const mods = new Mods(config, state, arma3sync)
+const arma3sync = new Arma3Sync(state)
+const mods = new Mods(state, arma3sync)
 
 app.use('/api', require('./api')(arma3sync, mods))
 
@@ -49,4 +50,6 @@ state.on('state', (state) => {
   io.emit('state', state)
 })
 
-server.listen(config.port, config.host)
+arma3sync.validate()
+
+server.listen(process.env.WEB_PORT, process.env.WEB_HOST)

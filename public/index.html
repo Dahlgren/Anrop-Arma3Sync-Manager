@@ -31,9 +31,14 @@
               If there are issues with the repository, try doing a manual rebuild.
               Repository will be automatically rebuilt after installing or updating a mod.
             </p>
-            <button type="button" class="btn btn-primary" ng-disabled="buildButtonDisabled" ng-click="!buildButtonDisabled && build()">
+            <button type="button" class="btn btn-primary" ng-disabled="buildButtonDisabled" ng-click="!buildButtonDisabled && build()" ng-show="buildButtonVisible">
               <span class="glyphicon glyphicon-refresh" ng-class="{'glyphicon-refresh-animate': buildButtonAnimated}"></span>
               Build
+            </button>
+
+            <button type="button" class="btn btn-primary" ng-disabled="initButtonDisabled" ng-click="!initButtonDisabled && init()" ng-show="initButtonVisible">
+              <span class="glyphicon glyphicon-refresh" ng-class="{'glyphicon-refresh-animate': initButtonAnimated}"></span>
+              Init
             </button>
           </div>
         </div>
