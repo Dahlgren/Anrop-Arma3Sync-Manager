@@ -1,0 +1,6 @@
+version: '2'
+
+services:
+  manager:
+    build: .
+    image: anrop/anrop-arma3sync-manager

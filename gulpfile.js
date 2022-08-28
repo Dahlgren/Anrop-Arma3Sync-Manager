@@ -15,13 +15,12 @@ gulp.task('js', () => {
     .pipe(uglify())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('.'))
-    .on('end', () => {
-      server.notify({ path: 'public/app.js' })
-    })
 })
 
 gulp.task('watch:frontend:js', () => {
-  return gulp.watch('app/**/*.js', gulp.series('js'))
+  return gulp.watch('app/**/*.js', gulp.series('js', () => {
+    server.notify({ path: 'public/app.js' })
+  }))
 })
 
 gulp.task('watch:frontend:static', () => {
@@ -46,5 +45,7 @@ gulp.task('server', () => {
   // Start the server at the beginning of the task
   return server.start()
 })
+
+gulp.task('build', gulp.parallel('js'))
 
 gulp.task('default', gulp.parallel('js', 'watch', 'server'))
