@@ -32,5 +32,8 @@ node_modules
 # Hash cache
 hash-cache.json
 
+# Steam Refresh token
+refresh-token.json
+
 # Compiled JS
 public/app.js

@@ -17,6 +17,7 @@ const State = require('./lib/State')
 const Arma3Sync = require('./lib/Arma3Sync')
 const FileHashCache = require('./lib/FileHashCache')
 const Mods = require('./lib/Mods')
+const SteamAuth = require('./lib/SteamAuth')
 const SteamWorkshop = require('./lib/SteamWorkshop')
 
 const app = express()
@@ -43,9 +44,16 @@ const arma3sync = new Arma3Sync(state, fileHashCache)
 const mods = new Mods(state, arma3sync, steamUser, steamWorkshop, fileHashCache)
 
 if (process.env.STEAM_USERNAME && process.env.STEAM_PASSWORD) {
-  steamUser.logOn({
-    accountName: process.env.STEAM_USERNAME,
-    password: process.env.STEAM_PASSWORD
+  const steamAuth = new SteamAuth(
+    process.env.STEAM_USERNAME,
+    process.env.STEAM_PASSWORD,
+    process.env.STEAM_REFRESH_TOKEN_PATH || 'refresh-token.json'
+  )
+  steamAuth.login()
+  steamAuth.on('refreshToken', (refreshToken) => {
+    steamUser.logOn({
+      refreshToken
+    })
   })
 
   steamUser.on('loggedOn', (details) => {
