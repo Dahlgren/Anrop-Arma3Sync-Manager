@@ -77,7 +77,8 @@
                   <strong ng-if="mod.steamWorkshop.name">
                     <span>{{mod.steamWorkshop.name}}</span>
                   </strong>
-                  <span ng-if="mod.steamWorkshop.outdated" class="label label-warning">Outdated</span>
+                  <span ng-if="mod.steamWorkshop.files.missing.length > 0" class="label label-warning">Missing files</span>
+                  <span ng-if="mod.steamWorkshop.files.outdated.length > 0" class="label label-warning">Outdated files</span>
                 </div>
               </td>
             </tr>
