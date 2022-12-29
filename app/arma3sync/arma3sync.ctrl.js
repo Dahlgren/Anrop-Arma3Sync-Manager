@@ -1,5 +1,5 @@
 angular.module('app')
-  .controller('Arma3SyncCtrl', function ($scope, Arma3SyncSvc) {
+  .controller('Arma3SyncCtrl', ['$scope', 'Arma3SyncSvc', function ($scope, Arma3SyncSvc) {
     const setDisabledState = (disabled) => {
       $scope.buildButtonDisabled = disabled
       $scope.initButtonDisabled = disabled
@@ -23,4 +23,4 @@ angular.module('app')
     $scope.init = () => {
       Arma3SyncSvc.init()
     }
-  })
+  }])

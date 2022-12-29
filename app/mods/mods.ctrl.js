@@ -1,5 +1,5 @@
 angular.module('app')
-  .controller('ModsCtrl', function ($scope, SweetAlert, ModsSvc) {
+  .controller('ModsCtrl', ['$scope', 'SweetAlert', 'ModsSvc', function ($scope, SweetAlert, ModsSvc) {
     const setDisabledState = (disabled) => {
       $scope.deleteButtonDisabled = disabled
       $scope.downloadButtonDisabled = disabled
@@ -57,4 +57,4 @@ angular.module('app')
     $scope.refresh = () => {
       ModsSvc.refresh()
     }
-  })
+  }])

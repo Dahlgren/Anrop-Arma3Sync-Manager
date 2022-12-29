@@ -12,5 +12,6 @@ COPY package.json package-lock.json /app/
 COPY patches/ /app/patches/
 RUN npm install --production --unsafe-perm
 COPY . /app/
-COPY --from=build /app/public/app.js /app/public/app.js
+COPY --from=build /app/public/* /app/public/
+ENV NODE_ENV=production
 CMD node app.js

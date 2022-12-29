@@ -33,4 +33,4 @@ node_modules
 hash-cache.json
 
 # Compiled JS
-public/app.js
+public/

@@ -24,8 +24,15 @@ const io = new SocketIO(server)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(logger('dev'))
-app.use(require('connect-livereload')())
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+
+if (process.env.NODE_ENV !== 'production') {
+  const webpack = require('webpack')
+  const middleware = require('webpack-dev-middleware')
+  const compiler = webpack(require('./webpack.config'))
+  app.use(middleware(compiler))
+}
+
 app.use(express.static(path.join(__dirname, 'public')))
 
 const state = new State()
