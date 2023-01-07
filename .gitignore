@@ -35,5 +35,8 @@ hash-cache.json
 # Steam Refresh token
 refresh-token.json
 
+# Steam manifest cache
+steam-manifest-cache.json
+
 # Compiled JS
 public/app.js

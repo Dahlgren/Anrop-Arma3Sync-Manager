@@ -18,6 +18,7 @@ const Arma3Sync = require('./lib/Arma3Sync')
 const FileHashCache = require('./lib/FileHashCache')
 const Mods = require('./lib/Mods')
 const SteamAuth = require('./lib/Steam/SteamAuth')
+const SteamManifestCache = require('./lib/Steam/SteamManifestCache')
 const SteamWorkshop = require('./lib/Steam/SteamWorkshop')
 
 const app = express()
@@ -36,12 +37,16 @@ const fileHashCache = new FileHashCache(
   process.env.FILE_HASH_CACHE || 'hash-cache.json'
 )
 
+const steamManifestCache = new SteamManifestCache(
+  process.env.STEAM_MANIFEST_CACHE || 'steam-manifest-cache.json'
+)
+
 const steamUser = new SteamUser()
-const steamWorkshop = new SteamWorkshop(steamUser, fileHashCache)
+const steamWorkshop = new SteamWorkshop(steamUser, fileHashCache, steamManifestCache)
 
 const state = new State()
 const arma3sync = new Arma3Sync(state, fileHashCache)
-const mods = new Mods(state, arma3sync, steamUser, steamWorkshop, fileHashCache)
+const mods = new Mods(state, arma3sync, steamUser, steamWorkshop, fileHashCache, steamManifestCache)
 
 if (process.env.STEAM_USERNAME && process.env.STEAM_PASSWORD) {
   const steamAuth = new SteamAuth(
