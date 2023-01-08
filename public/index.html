@@ -57,6 +57,10 @@
             <tr ng-repeat="mod in mods | orderBy: 'name' track by mod.name">
               <td>
                 <div class="btn-group pull-right" role="group">
+                  <a ng-click="!updateButtonDisabled && update(mod)" class="btn btn-primary btn-xs" ng-disabled="downloadButtonDisabled" ng-if="mod.progress == null && needsUpdate(mod)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                    Update
+                  </a>
                   <a ng-click="!deleteButtonDisabled && delete(mod)" class="btn btn-danger btn-xs" ng-disabled="deleteButtonDisabled" ng-if="mod.progress == null">
                     <span class="glyphicon glyphicon-trash"></span>
                     Delete
