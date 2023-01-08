@@ -57,4 +57,17 @@ angular.module('app')
     $scope.refresh = () => {
       ModsSvc.refresh()
     }
+
+    $scope.update = (mod) => {
+      ModsSvc.update(mod.name)
+    }
+
+    $scope.needsUpdate = (mod) => {
+      if (!mod.steamWorkshop || !mod.steamWorkshop.files) {
+        return false
+      }
+
+      const files = mod.steamWorkshop.files
+      return files.extra.length > 0 || files.missing.length > 0 || files.outdated.length > 0
+    }
   })

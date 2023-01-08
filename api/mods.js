@@ -15,6 +15,15 @@ module.exports = (mods) => {
       })
   })
 
+  router.post('/:id/update', (req, res) => {
+    if (!req.params.id) {
+      return res.sendStatus(400)
+    }
+
+    mods.updateMod(req.params.id)
+    res.status(204).json({})
+  })
+
   router.delete('/:id', (req, res) => {
     if (!req.params.id) {
       return res.sendStatus(400)

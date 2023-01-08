@@ -9,6 +9,9 @@ angular.module('app')
       },
       refresh: () => {
         return $http.post('api/mods')
+      },
+      update: (name) => {
+        return $http.post('api/mods/' + name + '/update')
       }
     }
   })
