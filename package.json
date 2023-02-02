@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "arma-class-parser": "1.1.1",
-    "arma3sync-lib": "1.1.0",
+    "arma3sync-lib": "1.1.1",
     "body-parser": "1.19.0",
     "connect-livereload": "0.6.1",
     "cors": "2.8.5",
