@@ -10,9 +10,7 @@ module.exports = (mods) => {
 
   router.post('/', (req, res) => {
     mods.updateMods()
-      .then(() => {
-        res.json(mods.mods)
-      })
+    res.status(204).json({})
   })
 
   router.post('/:id/update', (req, res) => {
