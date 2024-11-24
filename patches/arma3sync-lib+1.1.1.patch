@@ -1,0 +1,13 @@
+diff --git a/node_modules/arma3sync-lib/dist/service/zsync/zsyncmake.js b/node_modules/arma3sync-lib/dist/service/zsync/zsyncmake.js
+index ac47ffd..76383cf 100644
+--- a/node_modules/arma3sync-lib/dist/service/zsync/zsyncmake.js
++++ b/node_modules/arma3sync-lib/dist/service/zsync/zsyncmake.js
+@@ -51,7 +51,7 @@ function checkPath(file) {
+     }
+ }
+ function getCmdLine(publicURL, rootPath, file) {
+-    return "zsyncmake -eu \"" + publicURL + file + "\" -o \"" + rootPath + file + ".zsync\" \"" + rootPath + file + "\"";
++    return "zsyncmake -eu '" + publicURL + file + "' -o '" + rootPath + file + ".zsync' '" + rootPath + file + "'";
+ }
+ function zsyncmake(file) {
+     return __awaiter(this, void 0, void 0, function () {
