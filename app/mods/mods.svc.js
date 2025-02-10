@@ -7,8 +7,8 @@ angular.module('app')
       mods: () => {
         return $http.get('api/mods')
       },
-      refresh: () => {
-        return $http.post('api/mods')
+      refresh: (force) => {
+        return $http.post('api/mods?force=' + force)
       },
       update: (name) => {
         return $http.post('api/mods/' + name + '/update')

@@ -47,10 +47,19 @@
       <div class="col-md-8 mods">
         <div class="panel panel-default" ng-controller="ModsCtrl">
           <div class="panel-heading">
-            <button class="btn btn-xs btn-primary btn-refresh pull-right" ng-disabled="refreshButtonDisabled" ng-click="!refreshButtonDisabled && refresh()" value="Refresh">
-              <span class="glyphicon glyphicon-refresh" ng-class="{'glyphicon-refresh-animate': refreshButtonAnimated}"></span>
-              Refresh
-            </button>
+            <div class="btn-group pull-right">
+              <button class="btn btn-xs btn-primary btn-refresh" ng-disabled="refreshButtonDisabled" ng-click="!refreshButtonDisabled && refresh(false)" value="Refresh">
+                <span class="glyphicon glyphicon-refresh" ng-class="{'glyphicon-refresh-animate': refreshButtonAnimated}"></span>
+                Refresh
+              </button>
+              <button type="button" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a ng-disabled="refreshButtonDisabled" ng-click="!refreshButtonDisabled && refresh(true)">Refresh Steam data</a></li>
+              </ul>
+            </div>
             <h3 class="panel-title">Mods</h3>
           </div>
           <table class="table table-striped">

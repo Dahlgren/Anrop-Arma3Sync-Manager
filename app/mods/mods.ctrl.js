@@ -54,8 +54,8 @@ angular.module('app')
       showConfirmDeleteDialog(mod)
     }
 
-    $scope.refresh = () => {
-      ModsSvc.refresh()
+    $scope.refresh = (force) => {
+      ModsSvc.refresh(force)
     }
 
     $scope.update = (mod) => {

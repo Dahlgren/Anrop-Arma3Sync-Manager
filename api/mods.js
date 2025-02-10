@@ -9,7 +9,7 @@ module.exports = (mods) => {
   })
 
   router.post('/', (req, res) => {
-    mods.updateMods()
+    mods.updateMods(req.query.force === 'true')
     res.status(204).json({})
   })
 
