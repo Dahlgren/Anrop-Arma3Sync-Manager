@@ -1,13 +1,31 @@
 diff --git a/node_modules/steam-user/components/cdn.js b/node_modules/steam-user/components/cdn.js
-index 0720f75..a214624 100644
+index ae4dc35..1d8e3bb 100644
 --- a/node_modules/steam-user/components/cdn.js
 +++ b/node_modules/steam-user/components/cdn.js
-@@ -1,7 +1,7 @@
+@@ -1,4 +1,5 @@
+ const FS = require('fs');
++const os = require('os');
+ const StdLib = require('@doctormckay/stdlib');
+ const SteamCrypto = require('@doctormckay/steam-crypto');
+ 
+@@ -376,7 +377,7 @@ class SteamUserCDN extends SteamUserApps {
+ 				return reject(new Error(`Attempted to download a directory ${fileManifest.filename}`));
+ 			}
+ 
+-			let numWorkers = 4;
++			let numWorkers = os.cpus().length;
+ 
+ 			let fileSize = parseInt(fileManifest.size, 10);
+ 			let bytesDownloaded = 0;
+diff --git a/node_modules/steam-user/components/cdn_compression.js b/node_modules/steam-user/components/cdn_compression.js
+index b596e6b..453a1c1 100644
+--- a/node_modules/steam-user/components/cdn_compression.js
++++ b/node_modules/steam-user/components/cdn_compression.js
+@@ -1,6 +1,6 @@
  const AdmZip = require('adm-zip');
  const ByteBuffer = require('bytebuffer');
- const FS = require('fs');
 -const LZMA = require('lzma');
 +const LZMA = require('lzma-native');
  const StdLib = require('@doctormckay/stdlib');
- const SteamCrypto = require('@doctormckay/steam-crypto');
+ const {ZSTDDecoder} = require('zstddec');
  
