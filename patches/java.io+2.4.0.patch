@@ -1,13 +1,66 @@
+diff --git a/node_modules/java.io/lib/objects/array_list.js b/node_modules/java.io/lib/objects/array_list.js
+index 3150732..32fa6b9 100644
+--- a/node_modules/java.io/lib/objects/array_list.js
++++ b/node_modules/java.io/lib/objects/array_list.js
+@@ -74,6 +74,6 @@ exports.writeObject = function(io, obj) {
+   io.out.putInt(capacity);
+ 
+   obj._$.forEach(function(el) {
+-    io.writeObject(el);
++    io._writeObject(el);
+   });
+ }
+diff --git a/node_modules/java.io/lib/objects/hash_map.js b/node_modules/java.io/lib/objects/hash_map.js
+index ee99419..be191e9 100644
+--- a/node_modules/java.io/lib/objects/hash_map.js
++++ b/node_modules/java.io/lib/objects/hash_map.js
+@@ -98,7 +98,7 @@ exports.writeObject = function(io, obj) {
+   io.out.putInt(size);
+ 
+   for (var i in obj._$) {
+-    io.writeObject(i);
+-    io.writeObject(obj._$[i]);
++    io._writeObject(i);
++    io._writeObject(obj._$[i]);
+   }
+ }
 diff --git a/node_modules/java.io/lib/output.js b/node_modules/java.io/lib/output.js
-index 1fa348d..290ec8a 100644
+index 1fa348d..db93051 100644
 --- a/node_modules/java.io/lib/output.js
 +++ b/node_modules/java.io/lib/output.js
-@@ -13,7 +13,7 @@ var normalize = require('./normalize');
- module.exports = OutputStream;
- 
- function OutputStream() {
--  this.buf = new Buffer(1 << 20);
-+  this.buf = new Buffer(1 << 30);
+@@ -16,6 +16,7 @@ function OutputStream() {
+   this.buf = new Buffer(1 << 20);
    this.out = ByteBuffer.wrap(this.buf);
    this._refs = [];
++  this._handles = new Map();
    this._writeStreamHeader();
+ }
+ 
+@@ -34,9 +35,7 @@ var proto = OutputStream.prototype;
+ proto.write = proto.writeObject = function(obj) {
+   this._writeObject(obj, false);
+ 
+-  var ret = new Buffer(this.out.position());
+-  this.buf.copy(ret);
+-  return ret;
++  return this.out.copy(0, this.out.position());
+ }
+ 
+ proto.writeInt = function (val) {
+@@ -385,11 +384,15 @@ proto._writePrimitive = function(type, v) {
+ 
+ proto._newHandle = function(obj) {
+   var refs = this._refs;
++  if (!this._handles.has(obj)) {
++    this._handles.set(obj, refs.length);
++  }
+   refs[refs.length] = obj;
+ }
+ 
+ proto._lookupHandle = function(obj) {
+-  return this._refs.indexOf(obj);
++  var handle = this._handles.get(obj);
++  return handle === undefined ? -1 : handle;
+ }
+ 
+ proto._writeHandle = function(handle) {
