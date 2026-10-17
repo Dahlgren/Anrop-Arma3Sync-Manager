@@ -1,11 +1,11 @@
-FROM node:lts-slim AS build
+FROM node:20-slim AS build
 WORKDIR /app/
 COPY package.json package-lock.json /app/
 RUN npm install
 COPY . /app/
 RUN npm run build
 
-FROM node:lts-slim
+FROM node:20-slim
 WORKDIR /app/
 RUN apt-get update && apt-get install -y zsync && rm -rf /var/lib/apt/lists/*
 COPY package.json package-lock.json /app/
